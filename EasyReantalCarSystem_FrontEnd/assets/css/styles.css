@@ -1,0 +1,46 @@
+#bgImg{
+    height: 100vh;
+    width: 100%;
+}
+
+#btn {
+    display: flex;
+    justify-content: space-between;
+    width: 320px;
+    height: 50px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.btnStyle {
+    border: none;
+    width: 96px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+}
+
+.btnStyle:hover{
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+}
+
+.title{
+    font-size: 48px;
+    text-align: center;
+    width: 500px;
+    height: 120px;
+    display: inline-block;
+    position: absolute;
+    color: black;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 214px;
+}
