@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Car</title>
+    <meta content="width=device-width initial-scale=1" name="viewport">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark-subtle">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ECRS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"  href="#">Car</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Driver</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <button class="btn btn-outline-dark">Log Out</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+<section class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary-subtle fw-medium">
+            Manage Car
+        </div>
+        <div class="card-body">
+            <form class="row g-3">
+                <div class="col-md-2">
+                    <label for="inputCarNo" class="form-label">Car No</label>
+                    <input type="text" class="form-control" id="inputCarNo" name="carNo">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputBrand" class="form-label">Brand</label>
+                    <input type="text" class="form-control" id="inputBrand" name="brand">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputType" class="form-label">Type</label>
+                    <select id="inputType" class="form-select" name="type">
+                        <option selected>General</option>
+                        <option>Premium</option>
+                        <option>Luxury</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputNoPass" class="form-label">No Of Passenger</label>
+                    <input type="number" class="form-control" id="inputNoPass" name="noOfPassenger" min="2" max="20">
+                </div>
+                <div class="col-md-4">
+                    <label for="formFileMultiple" class="form-label">Car Images</label>
+                    <input class="form-control disabled" type="file" id="formFileMultiple" multiple name="carImages">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputTransmission" class="form-label">Transmission Type</label>
+                    <select id="inputTransmission" class="form-select" name="transmissionType">
+                        <option selected>Auto</option>
+                        <option>Manual</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputFuelType" class="form-label">Fuel Type</label>
+                    <select id="inputFuelType" class="form-select" name="fuelType">
+                        <option selected>Petrol</option>
+                        <option>Diesel</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputColor" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="inputColor" name="color">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputDailyRate" class="form-label">Daily Rate Rs.</label>
+                    <input type="text" class="form-control" id="inputDailyRate" name="dailyRate">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputMonthlyRate" class="form-label">Monthly Rate Rs.</label>
+                    <input type="text" class="form-control" id="inputMonthlyRate" name="monthlyRate">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputFreeKmForDay" class="form-label">Free Km For a Day</label>
+                    <input type="text" class="form-control" id="inputFreeKmForDay" name="freeKmForDay">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputFreeKmForMonth" class="form-label">Free Km For a Month</label>
+                    <input type="text" class="form-control" id="inputFreeKmForMonth" name="freeKmForMonth">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputPricePerExtraKm" class="form-label">Price Per Extra Km</label>
+                    <input type="text" class="form-control" id="inputPricePerExtraKm" name="pricePerExtraKm">
+                </div>
+                <div class="form-group text-right col-md-4 mt-5">
+                    <button class="btn btn-success col-12 col-sm-auto" id="btnAddToCarTable" type="button">
+                        Add
+                    </button>
+                    <button class="btn btn-warning col-12 col-sm-auto" id="btnCarUpdate" type="button">
+                        Update
+                    </button>
+                    <button class="btn btn-danger col-12 col-sm-auto" id="btnCarDelete" type="button">
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</main>
+<script src="../assets/js/jquery-3.6.1.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+</body>
+</html>
