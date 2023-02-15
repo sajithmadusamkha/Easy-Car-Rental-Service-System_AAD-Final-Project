@@ -43,27 +43,27 @@
 <main>
     <section class="container mt-4">
         <div class="card">
-            <div class="card-header bg-primary-subtle">
+            <div class="card-header bg-primary-subtle fw-medium">
                 Enter Your Rental Details
             </div>
             <div class="card-body">
                 <form class="row g-3">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="inputRentalId" class="form-label">Rental ID</label>
                         <input type="text" class="form-control" id="inputRentalId" name="rentalId">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="inputCus" class="form-label">Customer ID</label>
                         <select id="inputCus" class="form-select" name="rentalCId">
                             <option selected>C001</option>
                             <option>C002</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="inputRentalDate" class="form-label">Rental Date</label>
                         <input type="date" class="form-control" id="inputRentalDate" name="rentalDate">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="inputType" class="form-label">Vehicle Type</label>
                         <select id="inputType" class="form-select" name="vehicleType">
                             <option selected>General</option>
@@ -71,7 +71,7 @@
                             <option>Luxury</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <label for="inputVehicleNo" class="form-label">Vehicle Number</label>
                         <select id="inputVehicleNo" class="form-select" name="vehicleNo">
                             <option selected>AAA-2019</option>
@@ -79,21 +79,65 @@
                             <option>BAC-5678</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
-                        <label for="inputLdw" class="form-label">Loss Damage Waiver Amount Rs.</label>
+                    <div class="col-md-2">
+                        <label for="inputLdw" class="form-label">Loss Damage Amount Rs.</label>
                         <select id="inputLdw" class="form-select" name="ldwAmount">
                             <option selected>10000</option>
                             <option>15000</option>
                             <option>20000</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="bankSlip" class="form-label">Bank Slip Image</label>
                         <input class="form-control" type="file" id="bankSlip" name="LDWBankSlip">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="inputDStatus" class="form-label">Driver Status</label>
+                        <select id="inputDStatus" class="form-select" name="driverStatus">
+                            <option selected>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputPickDate" class="form-label">Pick up Date</label>
+                        <input type="date" class="form-control" id="inputPickDate" name="pickDate">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputReturnDate" class="form-label">Return Date</label>
+                        <input type="date" class="form-control" id="inputReturnDate" name="returnDate">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputAmount" class="form-label">Amount Rs.</label>
+                        <input type="text" class="form-control" id="inputAmount" name="amount">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputLocation" class="form-label">Pick up Location</label>
+                        <input type="text" class="form-control" id="inputLocation" name="location">
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-danger col-12 col-sm-auto" id="btnAddToTable" type="button">
+                            Add Car
+                        </button>
+                        <button class="btn btn-success col-12 col-sm-auto" id="btnPlaceRental" type="button">
+                            Place Rental
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
+        <table class="table table-bordered border-dark mt-4">
+            <thead>
+            <tr>
+                <th scope="col">Car No</th>
+                <th scope="col">LDW Amount</th>
+                <th scope="col">Driver Status</th>
+                <th scope="col">Pickup Date</th>
+                <th scope="col">Return Date</th>
+                <th scope="col">Total Amount</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </section>
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
