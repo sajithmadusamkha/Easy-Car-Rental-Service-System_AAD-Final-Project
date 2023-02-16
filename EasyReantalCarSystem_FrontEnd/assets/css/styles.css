@@ -1,11 +1,11 @@
 #btn {
     display: flex;
     justify-content: space-between;
-    width: 320px;
+    width: 220px;
     height: 50px;
     position: absolute;
     margin: auto;
-    top: 0;
+    top: 184px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -37,5 +37,5 @@
     margin: auto;
     left: 0;
     right: 0;
-    top: 214px;
+    top: 282px;
 }
