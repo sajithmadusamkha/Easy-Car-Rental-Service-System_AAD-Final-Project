@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Home</title>
+  <meta content="width=device-width initial-scale=1" name="viewport">
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg bg-dark-subtle">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">ECRS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Booking Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <button class="btn btn-outline-dark">Log Out</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<main>
+  <div class="container row">
+    <div class="col-md-3 mt-3" style="margin-left: 115px">
+      <div class="card">
+        <div class="card-body">
+          <label for="inputSortType" class="form-label">Sort</label>
+          <select id="inputSortType" class="form-select">
+            <option selected>No Of Passenger</option>
+            <option>Transmission Type</option>
+            <option>Brand</option>
+            <option>Type</option>
+            <option>Price</option>
+            <option>Fuel Type</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mt-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Find Your Perfect Rental Car Today</h5>
+          <p class="card-text">Get to Know Your Rental Car: Features, Specs, and More on Our Vehicle Detail Page.</p>
+          <button class="btn btn-primary">Rent a Car</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container table-responsive mt-4">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Car No</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Type</th>
+        <th scope="col">No of Passenger</th>
+        <th scope="col">Transmission Type</th>
+        <th scope="col">Fuel Type</th>
+        <th scope="col">Colour</th>
+        <th scope="col">Daily Rate Rs.</th>
+        <th scope="col">Monthly Rate Rs.</th>
+        <th scope="col">Free Km For Day</th>
+        <th scope="col">Free Km For Month</th>
+        <th scope="col">Front View</th>
+        <th scope="col">Back View</th>
+        <th scope="col">Side View</th>
+        <th scope="col">Interior View</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</main>
+<script src="../assets/js/jquery-3.6.1.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+</body>
+</html>
