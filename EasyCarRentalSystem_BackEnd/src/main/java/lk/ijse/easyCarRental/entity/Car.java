@@ -23,7 +23,7 @@ public class Car {
     private String color;
     private int noOfPassenger;
     private String fontImage;
-    private String BankImage;
+    private String backImage;
     private String sideImage;
     private String interiorImage;
     private double dailyRate;

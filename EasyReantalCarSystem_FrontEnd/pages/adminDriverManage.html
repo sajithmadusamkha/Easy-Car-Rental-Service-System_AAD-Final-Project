@@ -66,7 +66,14 @@
                     <label for="inputDriverLicenseNo" class="form-label">License No</label>
                     <input type="text" class="form-control" id="inputDriverLicenseNo" name="driverLicenseNo">
                 </div>
-                <div class="form-group text-right col-md-3 mt-5">
+                <div class="col-md-3">
+                    <label for="inputAvailability" class="form-label">Availability</label>
+                    <select id="inputAvailability" class="form-select" name="driverAvailability">
+                        <option selected>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="form-group text-right col-md-3 mt-2">
                     <button class="btn btn-success col-12 col-sm-auto" id="btnAddToCarTable" type="button">
                         Add
                     </button>
