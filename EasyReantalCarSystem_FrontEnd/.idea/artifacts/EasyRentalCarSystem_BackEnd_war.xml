@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EasyRentalCarSystem_BackEnd:war">
+    <output-path>$PROJECT_DIR$/../EasyRentalCarSystem_BackEnd/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>EasyRentalCarSystem_BackEnd</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="EasyRentalCarSystem_BackEnd-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="EasyRentalCarSystem_BackEnd:war exploded" />
+    </root>
+  </artifact>
+</component>

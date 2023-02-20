@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../EasyCarRentalSystem_BackEnd/EasyCarRentalSystem_BackEnd.iml" filepath="$PROJECT_DIR$/../EasyCarRentalSystem_BackEnd/EasyCarRentalSystem_BackEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/EasyCarRentalSystem_FrontEnd.iml" filepath="$PROJECT_DIR$/EasyCarRentalSystem_FrontEnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../EasyRentalCarSystem_BackEnd/EasyRentalCarSystem_BackEnd.iml" filepath="$PROJECT_DIR$/../EasyRentalCarSystem_BackEnd/EasyRentalCarSystem_BackEnd.iml" />
     </modules>
   </component>
 </project>
