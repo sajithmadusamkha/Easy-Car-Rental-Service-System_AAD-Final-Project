@@ -27,6 +27,7 @@ public class JPAConfig {
         bean.setPackagesToScan("lk.ijse.easyCarRental.entity");
         bean.setDataSource(ds);
         bean.setJpaVendorAdapter(jpa);
+//        comment
         return bean;
     }
 
