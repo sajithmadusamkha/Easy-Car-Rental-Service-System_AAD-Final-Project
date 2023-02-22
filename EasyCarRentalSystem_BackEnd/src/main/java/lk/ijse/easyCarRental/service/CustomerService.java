@@ -5,11 +5,11 @@ import lk.ijse.easyCarRental.dto.CustomerDTO;
 import java.util.List;
 
 public interface CustomerService {
-    public void addCustomer(CustomerDTO dto);
+    void addCustomer(CustomerDTO dto);
 
-    public void deleteCustomer(String id);
+    void deleteCustomer(String id);
 
-    public void updateCustomer(CustomerDTO dto);
+    void updateCustomer(CustomerDTO dto);
 
-    public List<CustomerDTO> getAllCustomer();
+    List<CustomerDTO> getAllCustomer();
 }

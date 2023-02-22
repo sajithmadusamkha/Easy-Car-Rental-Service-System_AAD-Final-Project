@@ -53,12 +53,12 @@
                 <input type="text" class="form-control" id="inputCusName" name="cusName">
             </div>
             <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" name="cusEmail">
+                <label for="inputCusEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputCusEmail" name="cusEmail">
             </div>
             <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" name="cusPwd">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword" name="cusPwd">
             </div>
             <div class="col-md-6">
                 <label for="cusTelNo" class="form-label">Contact No</label>
@@ -81,8 +81,8 @@
                 <input class="form-control" type="file" id="licenseImage" name="licenseImg">
             </div>
             <div class="col-md-6">
-                <label for="cusLicense" class="form-label">License Number</label>
-                <input type="text" class="form-control" id="cusLicense" name="cusLicense">
+                <label for="cusLicenseNo" class="form-label">License Number</label>
+                <input type="text" class="form-control" id="cusLicenseNo" name="cusLicense">
             </div>
             <div class="col-auto">
                 <button type="button" id="btnRegister" class="btn btn-primary">Register</button>
@@ -92,6 +92,44 @@
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/script/registerPage.js"></script>
+<script>
+    $("#btnRegister").click(function () {
+        var data = new FormData;
+
+        let imgLicense = $("#licenseImage")[0].files[0];
+        let imgNic = $("#nicImage")[0].files[0];
+        let imgLicenseName = $("#licenseImage")[0].files[0].name;
+        let imgNicName = $("#nicImage")[0].files[0].name;
+
+        var customer = {
+            "customerId" : $("#inputCusId").val(),
+            "name" : $("#inputCusName").val(),
+            "email" : $("#inputCusEmail").val(),
+            "password" : $("#inputPassword").val(),
+            "contactNo" : $("#cusTelNo").val(),
+            "address" : $("#cusAddress").val(),
+            "nicNo" : $("#cusNicNo").val(),
+            "drivingLicenseNo" : $("#cusLicenseNo").val(),
+            "nicImage" : imgNicName,
+            "drivingLicenseImage" : imgLicenseName
+        }
+
+        data.append("files",imgLicense);
+        data.append("files",imgNic);
+        data.append("customer", new Blob([JSON.stringify(customer)],{type: "application/json"}))
+
+        $.ajax({
+            url: "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/customer/register",
+            method: "post",
+            async: true,
+            contentType: false,
+            processData: false,
+            data: data,
+            success(resp){
+                window.location = "loginPage.html";
+            }
+        });
+    });
+</script>
 </body>
 </html>

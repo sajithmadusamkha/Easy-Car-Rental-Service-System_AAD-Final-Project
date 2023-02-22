@@ -27,9 +27,6 @@ public class WebAppConfig implements WebMvcConfigurer {
         return new StandardServletMultipartResolver();
     }
 
-    /*
-     * You have to override this method and allocate the url and location for uploaded resources
-     * */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/**").addResourceLocations("/uploads/");

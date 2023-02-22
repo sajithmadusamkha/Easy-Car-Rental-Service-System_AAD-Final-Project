@@ -14,16 +14,16 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("api/v1/customer")
 @CrossOrigin
 public class CustomerController {
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "register", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseUtil customerRegister(@RequestPart("files") MultipartFile[] file, @RequestPart("customer") CustomerDTO dto) throws URISyntaxException, IOException {
+    public ResponseUtil customerRegister(@RequestPart("files") MultipartFile[] file, @RequestPart("customer") CustomerDTO dto) {
         for (MultipartFile myFile : file) {
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
