@@ -22,7 +22,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path = "register", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(path="register",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseUtil customerRegister(@RequestPart("files") MultipartFile[] file, @RequestPart("customer") CustomerDTO dto) {
         for (MultipartFile myFile : file) {
             try {

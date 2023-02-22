@@ -46,31 +46,31 @@
         <form class="row g-3 mt-2">
             <div class="col-md-6">
                 <label for="inputCusId" class="form-label">Customer ID</label>
-                <input type="text" class="form-control" id="inputCusId" name="cusId">
+                <input type="text" class="form-control" id="inputCusId">
             </div>
             <div class="col-md-6">
                 <label for="inputCusName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="inputCusName" name="cusName">
+                <input type="text" class="form-control" id="inputCusName">
             </div>
             <div class="col-md-6">
                 <label for="inputCusEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputCusEmail" name="cusEmail">
+                <input type="email" class="form-control" id="inputCusEmail">
             </div>
             <div class="col-md-6">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword" name="cusPwd">
+                <input type="password" class="form-control" id="inputPassword">
             </div>
             <div class="col-md-6">
                 <label for="cusTelNo" class="form-label">Contact No</label>
-                <input type="text" class="form-control" id="cusTelNo" name="cusConNo">
+                <input type="text" class="form-control" id="cusTelNo">
             </div>
             <div class="col-md-6">
                 <label for="cusAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="cusAddress" name="cusAddress">
+                <input type="text" class="form-control" id="cusAddress">
             </div>
             <div class="col-md-6">
                 <label for="nicImage" class="form-label">National Identity Card Image</label>
-                <input class="form-control" type="file" id="nicImage" name="nicImg">
+                <input class="form-control" type="file" id="nicImage">
             </div>
             <div class="col-md-6">
                 <label for="cusNicNo" class="form-label">National Identity Card Number(NIC)</label>
@@ -78,11 +78,11 @@
             </div>
             <div class="col-md-6">
                 <label for="licenseImage" class="form-label">License Image</label>
-                <input class="form-control" type="file" id="licenseImage" name="licenseImg">
+                <input class="form-control" type="file" id="licenseImage">
             </div>
             <div class="col-md-6">
                 <label for="cusLicenseNo" class="form-label">License Number</label>
-                <input type="text" class="form-control" id="cusLicenseNo" name="cusLicense">
+                <input type="text" class="form-control" id="cusLicenseNo">
             </div>
             <div class="col-auto">
                 <button type="button" id="btnRegister" class="btn btn-primary">Register</button>
@@ -94,7 +94,7 @@
 <script src="../assets/js/bootstrap.min.js"></script>
 <script>
     $("#btnRegister").click(function () {
-        var data = new FormData;
+        var data = new FormData();
 
         let imgLicense = $("#licenseImage")[0].files[0];
         let imgNic = $("#nicImage")[0].files[0];
@@ -125,8 +125,12 @@
             contentType: false,
             processData: false,
             data: data,
-            success(resp){
+            success: function (res) {
+                alert("Successfully Registered");
                 window.location = "loginPage.html";
+            },
+            error: function (err) {
+                console.log(err);
             }
         });
     });
