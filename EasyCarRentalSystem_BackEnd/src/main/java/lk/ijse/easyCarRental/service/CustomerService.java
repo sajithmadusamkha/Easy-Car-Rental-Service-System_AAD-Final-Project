@@ -7,7 +7,7 @@ import java.util.List;
 public interface CustomerService {
     void addCustomer(CustomerDTO dto);
 
-    void deleteCustomer(String id);
+    void deleteCustomer(String customerId);
 
     void updateCustomer(CustomerDTO dto);
 

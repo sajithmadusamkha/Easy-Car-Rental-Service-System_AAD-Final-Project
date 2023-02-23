@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customer")
@@ -41,5 +42,23 @@ public class CustomerController {
         dto.setNicImage("uploads/" + dto.getNicImage());
         customerService.addCustomer(dto);
         return new ResponseUtil("200", "Registration Successful" , dto);
+    }
+
+    @PutMapping
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO dto){
+        customerService.updateCustomer(dto);
+        return new ResponseUtil("200",dto.getCustomerId()+": Updated.!",null);
+    }
+
+    @DeleteMapping(params = "customerId")
+    public ResponseUtil deleteCustomer(String customerId){
+        customerService.deleteCustomer(customerId);
+        return new ResponseUtil("200",customerId+" : Deleted.!",null);
+    }
+
+    @GetMapping
+    public ResponseUtil getAllCustomer(){
+        List<CustomerDTO> allCustomers = customerService.getAllCustomer();
+        return new ResponseUtil("200"," Success.!",allCustomers);
     }
 }

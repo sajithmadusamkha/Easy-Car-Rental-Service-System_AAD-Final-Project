@@ -102,16 +102,24 @@
         let imgNic = $("#nicImage")[0].files[0];
         let imgLicenseName = $("#licenseImage")[0].files[0].name;
         let imgNicName = $("#nicImage")[0].files[0].name;
+        let cusId = $("#inputCusId").val();
+        let nusName = $("#inputCusName").val();
+        let cusEmail = $("#inputCusEmail").val();
+        let cusContactNo = $("#cusTelNo").val();
+        let cusNicNo = $("#cusNicNo").val();
+        let cusLNo = $("#cusLicenseNo").val();
+        let cusPwd = $("#inputPassword").val();
+        let cusAddress = $("#cusAddress").val();
 
         var customer = {
-            "customerId" : $("#inputCusId").val(),
-            "name" : $("#inputCusName").val(),
-            "email" : $("#inputCusEmail").val(),
-            "password" : $("#inputPassword").val(),
-            "contactNo" : $("#cusTelNo").val(),
-            "address" : $("#cusAddress").val(),
-            "nicNo" : $("#cusNicNo").val(),
-            "drivingLicenseNo" : $("#cusLicenseNo").val(),
+            "customerId" : cusId,
+            "name" : nusName,
+            "email" : cusEmail,
+            "password" : cusPwd,
+            "contactNo" : cusContactNo,
+            "address" : cusAddress,
+            "nicNo" : cusNicNo,
+            "drivingLicenseNo" : cusLNo,
             "nicImage" : imgNicName,
             "drivingLicenseImage" : imgLicenseName
         }
