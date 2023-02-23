@@ -74,7 +74,7 @@
             </div>
             <div class="col-md-6">
                 <label for="cusNicNo" class="form-label">National Identity Card Number(NIC)</label>
-                <input type="text" class="form-control" id="cusNicNo" name="cusNic">
+                <input type="text" class="form-control" id="cusNicNo">
             </div>
             <div class="col-md-6">
                 <label for="licenseImage" class="form-label">License Image</label>
@@ -93,6 +93,8 @@
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
 <script>
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/customer/";
+
     $("#btnRegister").click(function () {
         var data = new FormData();
 
@@ -119,7 +121,7 @@
         data.append("customer", new Blob([JSON.stringify(customer)],{type: "application/json"}))
 
         $.ajax({
-            url: "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/customer/register",
+            url: baseUrl + "register",
             method: "post",
             async: true,
             contentType: false,

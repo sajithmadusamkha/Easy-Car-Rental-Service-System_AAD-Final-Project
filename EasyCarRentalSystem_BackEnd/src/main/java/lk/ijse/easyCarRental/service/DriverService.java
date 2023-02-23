@@ -7,7 +7,7 @@ import java.util.List;
 public interface DriverService {
     void addDriver(DriverDTO dto);
 
-    void deleteDriver(String id);
+    void deleteDriver(String driverId);
 
     void updateDriver(DriverDTO entity);
 

@@ -44,7 +44,7 @@
 </header>
 <main>
 <section class="container mt-4">
-    <div class="card">
+    <div class="card shadow">
         <div class="card-header bg-primary-subtle fw-medium">
             Manage Driver
         </div>
@@ -74,8 +74,8 @@
                     </select>
                 </div>
             </form>
-            <div class="btn-group text-right col-md-3 mt-2">
-                <button class="btn btn-success col-12 col-sm-auto" id="btnSaveDriver" type="button">
+            <div class="btn-group text-right col-md-3 mt-3">
+                <button class="btn btn-primary col-12 col-sm-auto" id="btnSaveDriver" type="button">
                     Add
                 </button>
                 <button class="btn btn-warning col-12 col-sm-auto" id="btnUpdateDriver" type="button">
@@ -84,21 +84,25 @@
                 <button class="btn btn-danger col-12 col-sm-auto" id="btnDeleteDriver" type="button">
                     Delete
                 </button>
+                <button class="btn btn-success col-12 col-sm-auto" id="btnGetDriver" type="button">
+                    Get All
+                </button>
             </div>
         </div>
     </div>
 </section>
     <div class="container table-responsive mt-4">
-        <table class="table">
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
                 <th scope="col">Driver ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Contact No.</th>
                 <th scope="col">License No.</th>
+                <th scope="col">Availability</th>
             </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="tblDriver"></tbody>
         </table>
     </div>
 </main>
@@ -106,6 +110,8 @@
 <script src="../assets/js/bootstrap.min.js"></script>
 <script>
     let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
+
+    loadAllDrivers();
 
     $("#btnSaveDriver").click(function () {
         var formData = $("#driverForm").serialize();
@@ -117,6 +123,7 @@
             dataType: "json",
             success(resp) {
                 alert(resp.message);
+                loadAllDrivers();
             },
             error:function(error){
                 var jsObject=JSON.parse(error.responseText);
@@ -124,6 +131,95 @@
             }
         });
     });
+
+    $("#btnUpdateDriver").click(function () {
+       let id = $("#inputDriverID").val();
+       let driverName = $("#inputDriverName").val();
+       let driverContactNo = $("#inputDriverContactNo").val();
+       let driverLNo = $("#inputDriverLicenseNo").val();
+       let driverAvailability = $("#inputAvailability").val();
+
+       var driver = {
+           "driverId": id,
+           "name": driverName,
+           "licenseNo": driverLNo,
+           "contactNo": driverContactNo,
+           "availability": driverAvailability
+       }
+
+       $.ajax({
+           url: baseUrl + "driver",
+           method: "put",
+           contentType: "application/json",
+           data: JSON.stringify(driver),
+           dataType: "json",
+           success: function (res) {
+               alert(res.message)
+               loadAllDrivers();
+           },
+           error: function (err) {
+               let cause= JSON.parse(err.responseText).message;
+               alert(cause);
+           }
+       });
+    });
+
+    $("#btnDeleteDriver").click(function () {
+        let driverId = $("#inputDriverID").val();
+        $.ajax({
+           url: baseUrl + "driver?driverId=" + driverId + "",
+           method: "delete",
+           dataType: "json",
+            success: function (res) {
+                alert(res.message)
+                loadAllDrivers();
+            },
+            error: function (err) {
+                let cause= JSON.parse(err.responseText).message;
+                alert(cause);
+            }
+        });
+    });
+
+    function loadAllDrivers() {
+        $("#tblDriver").empty();
+        $.ajax({
+           url: baseUrl + "driver",
+           dataType: "json",
+           success: function (res) {
+               for (let d of res.data){
+                   var row = '<tr><td>' + d.driverId + '</td><td>' + d.name + '</td><td>' + d.contactNo + '</td><td>'
+                   + d.licenseNo + '</td><td>' + d.availability +'</td></tr>'
+                   $("#tblDriver").append(row);
+               }
+               bindRowClickEvent();
+               setTextFieldValue("","","","");
+           }
+        });
+    }
+
+    function bindRowClickEvent() {
+        $("#tblDriver>tr").click(function () {
+           let id = $(this).children(":eq(0)").text();
+           let name = $(this).children(":eq(1)").text();
+           let contactNo = $(this).children(":eq(2)").text();
+           let licenseNo = $(this).children(":eq(3)").text();
+           let availability = $(this).children(":eq(4)").text();
+
+           $("#inputDriverID").val(id);
+           $("#inputDriverName").val(name);
+           $("#inputDriverContactNo").val(contactNo);
+           $("#inputDriverLicenseNo").val(licenseNo);
+           $("#inputAvailability").val(availability);
+        });
+    }
+
+    function setTextFieldValue(id,name,contactNo,licenseNo) {
+        $("#inputDriverID").val(id);
+        $("#inputDriverName").val(name);
+        $("#inputDriverContactNo").val(contactNo);
+        $("#inputDriverLicenseNo").val(licenseNo);
+    }
 </script>
 </body>
 </html>

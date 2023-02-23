@@ -5,10 +5,12 @@ import lk.ijse.easyCarRental.entity.Driver;
 import lk.ijse.easyCarRental.repo.DriverRepo;
 import lk.ijse.easyCarRental.service.DriverService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,17 +32,23 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public void deleteDriver(String id) {
-
+    public void deleteDriver(String driverId) {
+        if(!repo.existsById(driverId)){
+            throw new RuntimeException("Driver "+driverId+" Not Available to Delete..!");
+        }
+        repo.deleteById(driverId);
     }
 
     @Override
     public void updateDriver(DriverDTO entity) {
-
+        if (!repo.existsById(entity.getDriverId())){
+            throw new RuntimeException("Driver "+entity.getDriverId()+" Not Available to Update..!");
+        }
+        repo.save(mapper.map(entity, Driver.class));
     }
 
     @Override
     public List<DriverDTO> getAllDriver() {
-        return null;
+        return mapper.map(repo.findAll(),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
     }
 }
