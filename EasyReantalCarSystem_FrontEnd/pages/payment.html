@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <meta content="width=device-width initial-scale=1" name="viewport">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark-subtle">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ECRS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link"href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Driver</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Driver Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Customer Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Payment</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <button class="btn btn-outline-dark">Log Out</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <section class="container mt-4">
+        <div class="card border-0 shadow">
+            <div class="card-header fw-medium bg-primary">Rental Details</div>
+            <div class="card-body">
+                <form class="row g-3">
+                    <div class="col-md-3">
+                        <label for="inputRentalId" class="form-label">Rental ID</label>
+                        <select id="inputRentalId" class="form-select">
+                            <option selected>R-001</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="customerId" class="form-label">Customer ID</label>
+                        <input type="text" class="form-control" id="customerId" disabled>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="pickupDate" class="form-label">PickUp Date</label>
+                        <input type="text" class="form-control" id="pickupDate" disabled>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="returnDate" class="form-label">Return Date</label>
+                        <input type="text" class="form-control disabled" id="returnDate" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Car No.</th>
+                                <th scope="col">Driver ID</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tblDetails"></tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card border-0 shadow mt-4">
+            <div class="card-header fw-medium bg-warning">Payment</div>
+            <div class="card-body">
+                <form class="row g-3">
+                    <div class="col-md-3">
+                        <label for="paymentId" class="form-label">Payment ID</label>
+                        <input type="text" class="form-control" id="paymentId">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="damageCost" class="form-label">Damage Cost</label>
+                        <input type="text" class="form-control" id="damageCost">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="description" class="form-label">Damage Description</label>
+                        <input type="text" class="form-control" id="description">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="costPerKm" class="form-label">Cost Per Extra km</label>
+                        <input type="text" class="form-control" id="costPerKm">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="extra" class="form-label">Extra Mileage</label>
+                        <input type="text" class="form-control" id="extra">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="text" class="form-control" id="amount">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select id="status" class="form-select">
+                            <option selected>Paid</option>
+                            <option selected>Unpaid</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" id="btnPay" class="btn btn-danger px-5 fw-medium">Pay</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="../assets/js/jquery-3.6.1.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+</body>
+</html>
