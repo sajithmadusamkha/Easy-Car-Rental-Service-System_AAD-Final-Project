@@ -22,7 +22,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @ResponseStatus(HttpStatus.CREATED)
+    /*@ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path="register",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseUtil customerRegister(@RequestPart("files") MultipartFile[] file, @RequestPart("customer") CustomerDTO dto) {
         for (MultipartFile myFile : file) {
@@ -42,6 +42,12 @@ public class CustomerController {
         dto.setNicImage("uploads/" + dto.getNicImage());
         customerService.addCustomer(dto);
         return new ResponseUtil("200", "Registration Successful" , dto);
+    }*/
+
+    @PostMapping
+    public ResponseUtil saveCustomer(@RequestBody CustomerDTO dto){
+        customerService.addCustomer(dto);
+        return new ResponseUtil("200",dto.getCustomerId()+ " Added...!",null);
     }
 
     @PutMapping

@@ -43,57 +43,57 @@
     <section class="container">
         <h1 class="text-center mt-2">Customer Register Form</h1>
         <p class="text-center mt-1">Already Have An Account <a href="#">Login</a></p>
-        <form class="row g-3 mt-2">
+        <form class="row g-3 mt-2" id="customerForm">
             <div class="col-md-6">
                 <label for="inputCusId" class="form-label">Customer ID</label>
-                <input type="text" class="form-control" id="inputCusId">
+                <input type="text" class="form-control" id="inputCusId" name="customerId">
             </div>
             <div class="col-md-6">
                 <label for="inputCusName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="inputCusName">
+                <input type="text" class="form-control" id="inputCusName" name="name">
             </div>
             <div class="col-md-6">
                 <label for="inputCusEmail" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputCusEmail">
+                <input type="email" class="form-control" id="inputCusEmail" name="email">
             </div>
             <div class="col-md-6">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword">
+                <input type="password" class="form-control" id="inputPassword" name="password">
             </div>
             <div class="col-md-6">
                 <label for="cusTelNo" class="form-label">Contact No</label>
-                <input type="text" class="form-control" id="cusTelNo">
+                <input type="text" class="form-control" id="cusTelNo" name="contactNo">
             </div>
             <div class="col-md-6">
                 <label for="cusAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="cusAddress">
+                <input type="text" class="form-control" id="cusAddress" name="address">
             </div>
             <div class="col-md-6">
                 <label for="nicImage" class="form-label">National Identity Card Image</label>
-                <input class="form-control" type="file" id="nicImage">
+                <input class="form-control" type="file" id="nicImage" name="nicImage">
             </div>
             <div class="col-md-6">
                 <label for="cusNicNo" class="form-label">National Identity Card Number(NIC)</label>
-                <input type="text" class="form-control" id="cusNicNo">
+                <input type="text" class="form-control" id="cusNicNo" name="nicNo">
             </div>
             <div class="col-md-6">
                 <label for="licenseImage" class="form-label">License Image</label>
-                <input class="form-control" type="file" id="licenseImage">
+                <input class="form-control" type="file" id="licenseImage" name="drivingLicenseImage">
             </div>
             <div class="col-md-6">
                 <label for="cusLicenseNo" class="form-label">License Number</label>
-                <input type="text" class="form-control" id="cusLicenseNo">
-            </div>
-            <div class="col-auto">
-                <button type="button" id="btnRegister" class="btn btn-primary">Register</button>
+                <input type="text" class="form-control" id="cusLicenseNo" name="drivingLicenseNo">
             </div>
         </form>
+        <div class="col-auto mt-3">
+            <button type="button" id="btnRegister" class="btn btn-primary">Register</button>
+        </div>
     </section>
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
 <script>
-    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/customer/";
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
 
     $("#btnRegister").click(function () {
         var data = new FormData();
@@ -103,7 +103,7 @@
         let imgLicenseName = $("#licenseImage")[0].files[0].name;
         let imgNicName = $("#nicImage")[0].files[0].name;
         let cusId = $("#inputCusId").val();
-        let nusName = $("#inputCusName").val();
+        let cusName = $("#inputCusName").val();
         let cusEmail = $("#inputCusEmail").val();
         let cusContactNo = $("#cusTelNo").val();
         let cusNicNo = $("#cusNicNo").val();
@@ -113,7 +113,7 @@
 
         var customer = {
             "customerId" : cusId,
-            "name" : nusName,
+            "name" : cusName,
             "email" : cusEmail,
             "password" : cusPwd,
             "contactNo" : cusContactNo,
@@ -124,7 +124,7 @@
             "drivingLicenseImage" : imgLicenseName
         }
 
-        data.append("files",imgLicense);
+        /*data.append("files",imgLicense);
         data.append("files",imgNic);
         data.append("customer", new Blob([JSON.stringify(customer)],{type: "application/json"}))
 
@@ -141,6 +141,23 @@
             },
             error: function (err) {
                 console.log(err);
+            }
+        });*/
+
+        var formData = $("#customerForm").serialize();
+
+        $.ajax({
+            url: baseUrl + "customer",
+            method: "post",
+            data: JSON.stringify(customer),
+            contentType: "application/json",
+            success: function(resp) {
+                alert(resp.message);
+                window.location = "../pages/loginPage.html";
+            },
+            error:function(error){
+                var jsObject=JSON.parse(error.responseText);
+                alert(jsObject.message);
             }
         });
     });

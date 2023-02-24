@@ -1,7 +1,17 @@
 package lk.ijse.easyCarRental.service;
 
-import lk.ijse.easyCarRental.entity.Car;
-import org.springframework.data.jpa.repository.JpaRepository;
+import lk.ijse.easyCarRental.dto.CarDTO;
 
-public interface CarService extends JpaRepository<Car, String> {
+import java.util.List;
+
+public interface CarService{
+    public void saveCar(CarDTO dto);
+
+    public void deleteCar(String carRegNo);
+
+    public void updateCar(CarDTO dto);
+
+    public CarDTO searchVehicle(String carRegNo);
+
+    public List<CarDTO> getAllVehicle();
 }
