@@ -13,9 +13,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+@EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "lk.ijse.easyCarRental")
-@EnableWebMvc
 public class WebAppConfig implements WebMvcConfigurer {
     @Bean
     public ModelMapper modelMapper() {

@@ -43,7 +43,7 @@
     </nav>
 </header>
 <main>
-<section class="container mt-4">
+<section class="container-fluid mt-4">
     <div class="card">
         <div class="card-header bg-primary-subtle fw-medium">
             Manage Car
@@ -56,23 +56,33 @@
                 </div>
                 <div class="col-md-2">
                     <label for="inputBrand" class="form-label">Brand</label>
-                    <input type="text" class="form-control" id="inputBrand" name="brand">
+                    <select id="inputBrand" class="form-select" name="type">
+                        <option selected>Select Vehicle Brand</option>
+                        <option>Suzuki Alto</option>
+                        <option>Suzuki Alto K10</option>
+                        <option>Suzuki Celerio</option>
+                        <option>Perodua (Daihatsu) Axia</option>
+                        <option>Toyota Prius C/ Aqua</option>
+                        <option>Toyota Corolla Axio</option>
+                        <option>Perodua Bezza Prime Sedan</option>
+                        <option>Toyota Allion NZT 260</option>
+                        <option>Toyota Premio</option>
+                        <option>Mercedes</option>
+                        <option>BMW i8</option>
+                    </select>
                 </div>
                 <div class="col-md-2">
                     <label for="inputType" class="form-label">Type</label>
                     <select id="inputType" class="form-select" name="type">
-                        <option selected>General</option>
+                        <option selected>Select Type</option>
+                        <option>General</option>
                         <option>Premium</option>
                         <option>Luxury</option>
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label for="inputNoPass" class="form-label">No Of Passenger</label>
-                    <input type="number" class="form-control" id="inputNoPass" name="noOfPassenger" min="2" max="20">
-                </div>
-                <div class="col-md-4">
-                    <label for="formFileMultiple" class="form-label">Car Images</label>
-                    <input class="form-control disabled" type="file" id="formFileMultiple" multiple name="carImages">
+                    <input type="number" class="form-control" id="inputNoPass" name="noOfPassenger" min="2" max="20" placeholder="">
                 </div>
                 <div class="col-md-2">
                     <label for="inputTransmission" class="form-label">Transmission Type</label>
@@ -112,16 +122,32 @@
                     <label for="inputPricePerExtraKm" class="form-label">Price Per Extra Km</label>
                     <input type="text" class="form-control" id="inputPricePerExtraKm" name="pricePerExtraKm">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <label for="inputAvailability" class="form-label">Availability</label>
                     <select id="inputAvailability" class="form-select" name="availability">
                         <option selected>Yes</option>
                         <option>No</option>
                     </select>
                 </div>
+                <div class="col-md-3">
+                    <label for="frontImg" class="form-label">Front Image</label>
+                    <input class="form-control disabled" type="file" id="frontImg" name="fontImage">
+                </div>
+                <div class="col-md-3">
+                    <label for="backImg" class="form-label">Back Image</label>
+                    <input class="form-control disabled" type="file" id="backImg" name="backImage">
+                </div>
+                <div class="col-md-3">
+                    <label for="sideImg" class="form-label">Side Image</label>
+                    <input class="form-control disabled" type="file" id="sideImg" name="sideImage">
+                </div>
+                <div class="col-md-2">
+                    <label for="interiorImg" class="form-label">Interior Image</label>
+                    <input class="form-control disabled" type="file" id="interiorImg" name="interiorImage">
+                </div>
             </form>
             <div class="btn-group text-right col-md-4 mt-3">
-                <button class="btn btn-success col-12 col-sm-auto" id="btnAddToCarTable" type="button">
+                <button class="btn btn-success col-12 col-sm-auto" id="btnAddCar" type="button">
                     Add
                 </button>
                 <button class="btn btn-warning col-12 col-sm-auto" id="btnCarUpdate" type="button">
@@ -134,7 +160,7 @@
         </div>
     </div>
 </section>
-    <div class="container table-responsive mt-4">
+    <div class="container-fluid table-responsive mt-4">
         <table class="table">
             <thead>
             <tr>
@@ -149,10 +175,6 @@
                 <th scope="col">Monthly Rate Rs.</th>
                 <th scope="col">Free Km For Day</th>
                 <th scope="col">Free Km For Month</th>
-                <th scope="col">Front View</th>
-                <th scope="col">Back View</th>
-                <th scope="col">Side View</th>
-                <th scope="col">Interior View</th>
             </tr>
             </thead>
             <tbody></tbody>
@@ -161,5 +183,62 @@
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
+<script>
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
+
+    $("#btnAddCar").click(function () {
+        let carNo = $("#inputCarNo").val();
+        let carBrand = $("#inputBrand").val();
+        let carType = $("#inputType").val();
+        let carTransmissionType = $("#inputTransmission").val();
+        let carFuelType = $("#inputFuelType").val();
+        let carColor = $("#inputColor").val();
+        let passengers = $("#inputNoPass").val();
+        let carDailyRate = $("#inputDailyRate").val();
+        let carMonthlyRate = $("#inputMonthlyRate").val();
+        let freeKmDaily = $("#inputFreeKmForDay").val();
+        let freeKmMonth = $("#inputFreeKmForMonth").val();
+        let carPricePerExtra = $("#inputPricePerExtraKm").val();
+        let status = $("#inputAvailability").val();
+        let frontImageName = $("#frontImg")[0].files[0].name;
+        let backImageName = $("#backImg")[0].files[0].name;
+        let sideImageName = $("#sideImg")[0].files[0].name;
+        let interiorImageName = $("#interiorImg")[0].files[0].name;
+
+        var car = {
+            "carRegNo": carNo,
+            "brand": carBrand,
+            "type": carType,
+            "transmissionType": carTransmissionType,
+            "fuelType": carFuelType,
+            "color": carColor,
+            "noOfPassenger": passengers,
+            "fontImage": frontImageName,
+            "backImage": backImageName,
+            "sideImage": sideImageName,
+            "interiorImage": interiorImageName,
+            "dailyRate": carDailyRate,
+            "monthlyRate": carMonthlyRate,
+            "freeKmForDaily": freeKmDaily,
+            "freeKmForMonth": freeKmMonth,
+            "pricePerExtraKm": carPricePerExtra,
+            "availability": status
+        }
+
+        $.ajax({
+            url: baseUrl + "car",
+            method: "post",
+            data: JSON.stringify(car),
+            contentType: "application/json",
+            success: function(resp) {
+                alert(resp.message);
+            },
+            error:function(error){
+                var jsObject=JSON.parse(error.responseText);
+                alert(jsObject.message);
+            }
+        });
+    });
+</script>
 </body>
 </html>

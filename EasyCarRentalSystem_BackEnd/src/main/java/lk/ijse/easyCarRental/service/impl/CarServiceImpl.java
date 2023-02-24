@@ -7,55 +7,59 @@ import lk.ijse.easyCarRental.service.CarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@Transactional
 public class CarServiceImpl implements CarService {
 
     @Autowired
-    CarRepo carRepo;
+    CarRepo repo;
 
     @Autowired
     ModelMapper mapper;
 
     @Override
     public void saveCar(CarDTO dto) {
-        if(!carRepo.existsById(dto.getCarRegNo())) {
+        if(!repo.existsById(dto.getCarRegNo())) {
             Car car = mapper.map(dto, Car.class);
-            carRepo.save(car);
+            repo.save(car);
         }else {
-            throw new RuntimeException("This Car Registration Number is Already Exist..!");
+            throw new RuntimeException("This Car Registration Number Already Exist..!");
         }
     }
 
     @Override
     public void deleteCar(String carRegNo) {
-        if(!carRepo.existsById(carRegNo)){
-            throw new RuntimeException("Car "+carRegNo+" Not Available to Delete..!");
+        if(!repo.existsById(carRegNo)){
+            throw new RuntimeException("Customer " + carRegNo + " not available to delete");
         }
-        carRepo.deleteById(carRegNo);
+        repo.deleteById(carRegNo);
     }
 
     @Override
     public void updateCar(CarDTO dto) {
-        if(!carRepo.existsById(dto.getCarRegNo())) {
+        if(!repo.existsById(dto.getCarRegNo())) {
             Car car = mapper.map(dto, Car.class);
-            carRepo.save(car);
+            repo.save(car);
         }else {
-            throw new RuntimeException("Car "+dto.getCarRegNo()+" Not Available to Update..!");
+            throw new RuntimeException("Car " + dto.getCarRegNo() + " not available to update");
         }
     }
 
     @Override
-    public CarDTO searchVehicle(String carRegNo) {
-        Car car = carRepo.findById(carRegNo).get();
-        CarDTO carDTO = mapper.map(car, CarDTO.class);
-        return carDTO;
+    public List<CarDTO> getAllCars() {
+        return mapper.map(repo.findAll(), new TypeToken<ArrayList<CarDTO>>(){}.getType());
     }
 
     @Override
-    public List<CarDTO> getAllVehicle() {
-        return mapper.map(carRepo.findAll(),new TypeToken<ArrayList<CarDTO>>(){}.getType());
+    public CarDTO searchCar(String carRegNo) {
+        Car car = repo.findById(carRegNo).get();
+        CarDTO carDTO = mapper.map(car, CarDTO.class);
+        return carDTO;
     }
 }
