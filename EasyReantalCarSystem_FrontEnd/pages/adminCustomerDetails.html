@@ -44,54 +44,18 @@
 </header>
 <main>
     <section class="container mt-4">
-        <div class="card">
+        <div class="card" style="width: 25rem">
             <div class="card-header bg-primary-subtle fw-medium">
-                Manage Customer
+                Delete Customer
             </div>
             <div class="card-body">
                 <form class="row g-3">
-                    <div class="col-md-2">
-                        <label for="inputCusId" class="form-label">Customer ID</label>
-                        <input type="text" class="form-control" id="inputCusId" name="cusId">
+                    <div class="col-md-6">
+                        <label for="selectCusId" class="form-label">Customer ID</label>
+                        <select id="selectCusId" class="form-select" name="availability"></select>
                     </div>
-                    <div class="col-md-2">
-                        <label for="inputCusName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="inputCusName" name="cusName">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" name="cusEmail">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="inputPassword4" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4" name="cusPwd">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="cusTelNo" class="form-label">Contact No</label>
-                        <input type="text" class="form-control" id="cusTelNo" name="cusConNo">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="cusAddress" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="cusAddress" name="cusAddress">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="nicImage" class="form-label">National Identity Card Image</label>
-                        <input class="form-control" type="file" id="nicImage" name="nicImg">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="cusNicNo" class="form-label">National Identity Card Number(NIC)</label>
-                        <input type="text" class="form-control" id="cusNicNo" name="cusNic">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="licenseImage" class="form-label">License Image</label>
-                        <input class="form-control" type="file" id="licenseImage" name="licenseImg">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="cusLicense" class="form-label">License Number</label>
-                        <input type="text" class="form-control" id="cusLicense" name="cusLicense">
-                    </div>
-                    <div class="form-group col-auto">
-                        <button class="btn btn-danger col-12 col-sm-auto" id="btnCarDelete" type="button">
+                    <div class="col-md-6 mt-5">
+                        <button class="btn btn-danger" id="btnCusDelete" type="button">
                             Delete Customer
                         </button>
                     </div>
@@ -101,7 +65,7 @@
     </section>
 
     <div class="container table-responsive mt-4">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th scope="col">Customer ID</th>
@@ -110,17 +74,68 @@
                 <th scope="col">Password</th>
                 <th scope="col">Contact No.</th>
                 <th scope="col">Address</th>
-                <th scope="col">NIC Image</th>
                 <th scope="col">NIC No</th>
-                <th scope="col">License Image</th>
                 <th scope="col">License No</th>
             </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="tblCus"></tbody>
         </table>
     </div>
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
+<script>
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
+
+    loadAllCustomers();
+    loadAllCustomerIds();
+
+    $("#btnCusDelete").click(function () {
+       let cusId = $("#selectCusId").val();
+        $.ajax({
+            url: baseUrl + "customer?customerId=" + cusId + "",
+            method: "delete",
+            dataType: "json",
+            success: function (res) {
+                alert(res.message)
+                loadAllCustomers();
+                loadAllCustomerIds();
+            },
+            error: function (err) {
+                let cause= JSON.parse(err.responseText).message;
+                alert(cause);
+            }
+        });
+    });
+
+    function loadAllCustomerIds() {
+        $("#selectCusId").empty();
+        $.ajax({
+            url: baseUrl + "customer",
+            dataType: "json",
+            success: function (res) {
+                for (let cus of res.data) {
+                    $("#selectCusId").append(`<option value="${cus.customerId}">${cus.customerId}</option>`)
+                }
+            }
+        });
+    }
+
+    function loadAllCustomers() {
+        $("#tblCus").empty();
+        $.ajax({
+           url: baseUrl + "customer",
+            dataType: "json",
+            success: function (res) {
+                for (let cus of res.data) {
+                    var row = '<tr><td>' + cus.customerId + '</td><td>' + cus.name + '</td><td>' + cus.email +
+                        '</td><td>' + cus.password + '</td><td>' + cus.contactNo + '</td><td>' + cus.address +
+                        '</td><td>' + cus.nicNo + '</td><td>' + cus.drivingLicenseNo + '</td></tr>'
+                    $("#tblCus").append(row)
+                 }
+            }
+        });
+    }
+</script>
 </body>
 </html>
