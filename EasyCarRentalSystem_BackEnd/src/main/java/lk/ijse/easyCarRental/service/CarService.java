@@ -14,4 +14,6 @@ public interface CarService {
     public List<CarDTO> getAllCars();
 
     public CarDTO searchCar(String carRegNo);
+
+    public void uploadCarImg(String fontImage, String backImage, String sideImage, String interiorImage, String carRegNo);
 }

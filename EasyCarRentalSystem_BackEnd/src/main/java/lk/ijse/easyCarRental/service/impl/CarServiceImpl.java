@@ -62,4 +62,13 @@ public class CarServiceImpl implements CarService {
         CarDTO carDTO = mapper.map(car, CarDTO.class);
         return carDTO;
     }
+
+    @Override
+    public void uploadCarImg(String fontImage, String backImage, String sideImage, String interiorImage, String carRegNo) {
+        if (repo.existsById(carRegNo)) {
+            repo.updateCarFilePath(fontImage,backImage,sideImage,interiorImage,carRegNo);
+        } else {
+            throw new RuntimeException("Something Went Wrong");
+        }
+    }
 }

@@ -53,7 +53,7 @@
                         <input type="password" class="form-control" id="inputPassword4">
                     </div>
                     <div class="col-md-12" style="margin-left: 90px;">
-                        <a href="#" class="btn btn-primary">Sign In</a>
+                        <button id="btnSignIn" class="btn btn-primary" type="button">Sign In</button>
                     </div>
                 </form>
             </div>
@@ -61,5 +61,37 @@
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
+<script>
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
+
+    $("#btnSignIn").click(function () {
+        signIn();
+    });
+
+    function signIn(){
+        var userEmail = $("#inputEmail4").val();
+        var userPassword = $("#inputPassword4").val();
+
+        let user  = {
+            "email": userEmail,
+            "password": userPassword
+        }
+
+        $.ajax({
+            url: baseUrl + "signIn",
+            method: "put",
+            contentType: "application/json",
+            data: JSON.stringify(user),
+            success(resp) {
+                var r = resp.data;
+                if (resp.message == "Customer") {
+                    window.location = "../pages/customerHome.html";
+                } else if (resp.message == "Admin") {
+                    window.location = "../pages/adminDashBoard.html";
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService{
         List<Admin> allAdmins = adminRepo.findAll();
         for(Admin a : allAdmins) {
             if (a.getEmail().equals(userDTO.getEmail()) & a.getPassword().equals(userDTO.getPassword())){
-
+                return new AdminDTO(a.getAdminId(),a.getEmail(),a.getUserName(),a.getPassword());
             }
         }
         return null;

@@ -1,6 +1,9 @@
 package lk.ijse.easyCarRental.service.impl;
 
+import lk.ijse.easyCarRental.dto.AdminDTO;
 import lk.ijse.easyCarRental.dto.CustomerDTO;
+import lk.ijse.easyCarRental.dto.UserDTO;
+import lk.ijse.easyCarRental.entity.Admin;
 import lk.ijse.easyCarRental.entity.Customer;
 import lk.ijse.easyCarRental.repo.CustomerRepo;
 import lk.ijse.easyCarRental.service.CustomerService;
@@ -50,5 +53,17 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerDTO> getAllCustomer() {
         return mapper.map(repo.findAll(), new TypeToken<ArrayList<CustomerDTO>>(){}.getType());
+    }
+
+    @Override
+    public CustomerDTO getCustomerForLogin(UserDTO userDTO) {
+        List<Customer> allCus = repo.findAll();
+        for(Customer c : allCus) {
+            if (c.getEmail().equals(userDTO.getEmail()) & c.getPassword().equals(userDTO.getPassword())){
+                return new CustomerDTO(c.getCustomerId(),c.getName(),c.getEmail(), c.getPassword(), c.getContactNo(),
+                        c.getAddress(),c.getNicNo(),c.getDrivingLicenseNo(),c.getNicImage(),c.getDrivingLicenseImage());
+            }
+        }
+        return null;
     }
 }

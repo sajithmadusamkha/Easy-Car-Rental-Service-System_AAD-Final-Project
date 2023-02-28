@@ -1,6 +1,9 @@
 package lk.ijse.easyCarRental.service.impl;
 
+import lk.ijse.easyCarRental.dto.CustomerDTO;
 import lk.ijse.easyCarRental.dto.DriverDTO;
+import lk.ijse.easyCarRental.dto.UserDTO;
+import lk.ijse.easyCarRental.entity.Customer;
 import lk.ijse.easyCarRental.entity.Driver;
 import lk.ijse.easyCarRental.repo.DriverRepo;
 import lk.ijse.easyCarRental.service.DriverService;
@@ -50,5 +53,10 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public List<DriverDTO> getAllDriver() {
         return mapper.map(repo.findAll(),new TypeToken<ArrayList<DriverDTO>>(){}.getType());
+    }
+
+    @Override
+    public DriverDTO getDriverForLogin(UserDTO userDTO) {
+        return null;
     }
 }
