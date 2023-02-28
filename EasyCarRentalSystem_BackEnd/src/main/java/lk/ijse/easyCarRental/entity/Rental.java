@@ -1,14 +1,15 @@
 package lk.ijse.easyCarRental.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,13 +19,19 @@ import java.time.LocalDate;
 public class Rental {
     @Id
     private String rentalId;
-    @ManyToOne
-    private Customer customerId;
+
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId", nullable = false)
+    private Customer cusId;
     private LocalDate date;
-    private LocalDate pickupDate;
-    private LocalDate returnDate;
-    private double amount;
-    private double ldwPayment;
-    private String pickUpLocation;
-    private String driverStatus;
+
+    @OneToMany(mappedBy = "rentalId")
+    @JsonIgnore
+    private List<RentalDetails> rentalDetails;
+
+    public Rental(String rentalId, Customer cusId, LocalDate date) {
+        this.rentalId = rentalId;
+        this.cusId = cusId;
+        this.date = date;
+    }
 }

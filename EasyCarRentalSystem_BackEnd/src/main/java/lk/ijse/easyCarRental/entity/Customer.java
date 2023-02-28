@@ -27,7 +27,4 @@ public class Customer {
     private String drivingLicenseNo;
     private String nicImage;
     private String drivingLicenseImage;
-
-    @OneToMany(mappedBy = "customerId")
-    private List<Rental> rentalDetails;
 }
