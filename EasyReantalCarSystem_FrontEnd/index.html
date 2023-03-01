@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-        <nav class="navbar navbar-expand-lg bg-dark">
+        <nav class="navbar navbar-expand-lg bg-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="#">ECRS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,20 +21,20 @@
                             <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">About Us</a>
+                            <a class="nav-link text-white" href="#about">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Contact Us</a>
+                            <a class="nav-link text-white" href="#contact">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Services</a>
+                            <a class="nav-link text-white" href="#services">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Vehicles</a>
+                            <a class="nav-link text-white" href="pages/carDetails.html">Vehicles</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                        <button class="btn btn-outline-light">Sign In</button>
+                        <a href="pages/loginPage.html"><button type="button" class="btn btn-outline-light">Sign In</button></a>
                     </form>
                 </div>
             </div>
@@ -44,16 +44,16 @@
     <section>
         <h1 class="title">Welcome To Easy Car Rental Service</h1>
         <div id="btn">
-            <a href="#"><button class="btnStyle">Register</button></a>
-            <a href="#"><button class="btnStyle">Car Details</button></a>
+            <a href="pages/registerPage.html"><button type="button" class="btnStyle">Register</button></a>
+            <a href="pages/carDetails.html"><button type="button" class="btnStyle">Car Details</button></a>
         </div>
         <img class="img-fluid" src="assets/images/pexels-mike-b-120049.jpg">
     </section>
     <section id="about" class="bg-dark">
         <div class="container-fluid text-white">
             <h2 class="text-center fw-bold pt-3">About Us</h2>
-            <div class="container">
-                <p class="fw-medium text-center pb-3">
+            <div class="container" style="height: 30rem;">
+                <p class="fw-medium pb-3" style="width: 36rem;">
                     Easy Car Rental Service is a customer-focused car rental company dedicated to providing affordable,
                     reliable, and convenient rental solutions to individuals and businesses. Our goal is to simplify the
                     car rental process and ensure that every customer enjoys a hassle-free experience from start to finish.
@@ -62,6 +62,7 @@
                     Our friendly and knowledgeable team is always on hand to provide assistance and answer any questions
                     you may have, making your rental experience with Easy Car Rental Service both enjoyable and stress-free.
                 </p>
+                <img src="assets/images/about.jpg" style="position: relative; left: 628px; bottom: 265px;">
             </div>
         </div>
     </section>
@@ -70,7 +71,7 @@
             <h2 class="text-center fw-bold">Our Services</h2>
             <div class="row mt-3">
                 <div class="col-md-4">
-                    <div class="card mx-5" style="width: 18rem;">
+                    <div class="card mx-5 border-0 shadow" style="width: 18rem;">
                         <img src="assets/images/service.jpg" class="card-img-top" alt="...">
                         <div class="card-header text-center fw-medium">24x7 Service</div>
                         <div class="card-body">
@@ -81,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card mx-5" style="width: 18rem;">
+                    <div class="card mx-5 border-0 shadow" style="width: 18rem;">
                         <img src="assets/images/maintainance.jpg" class="card-img-top" alt="...">
                         <div class="card-header text-center fw-medium">Maintenance</div>
                         <div class="card-body">
@@ -92,7 +93,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card mx-5" style="width: 18rem;">
+                    <div class="card mx-5 border-0 shadow" style="width: 18rem;">
                         <img src="assets/images/ontimepickup.jpg" class="card-img-top" alt="...">
                         <div class="card-header text-center fw-medium">On-Time Pickup & Drop-Off</div>
                         <div class="card-body">
@@ -143,7 +144,7 @@
 </main>
 <footer class="bg-dark text-center text-white">
    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-       © 2023 Copyright:<a class="text-white" href="#">ECRS Pvt. Ltd</a>
+       © 2023 Copyright:<a class="text-white" href="#"> ECRS Pvt. Ltd</a>
    </div>
 </footer>
 <script src="assets/js/jquery-3.6.1.min.js"></script>
