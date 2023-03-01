@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark-subtle">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">ECRS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cars</a>
+                            <a class="nav-link" href="../pages/adminCarManage.html">Cars</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../pages/adminRentalConfirmation.html">Bookings</a>
@@ -39,63 +39,92 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                        <button class="btn btn-outline-dark">Log Out</button>
+                        <a href="../index.html"><button class="btn btn-outline-light">Log Out</button></a>
                     </form>
                 </div>
             </div>
         </nav>
     </header>
 <main>
-    <section class="container" style="top: 170px; position: relative;">
+    <section class="container mt-4">
         <div class="row g-3">
-            <div class="col-md-4 mt-4">
-                <div class="card shadow border-0" style="width: 18rem;">
+            <div class="col-md-3 mt-4">
+                <div class="card border-0 shadow bg-primary bg-gradient">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Users</h5>
-                        <p class="card-text fs-1 text-center">8</p>
+                        <h5 class="card-title text-center text-light">Users</h5>
+                        <p class="card-text fs-1 text-center text-light">15</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-4">
-                <div class="card shadow border-0" style="width: 18rem;">
+            <div class="col-md-3 mt-4">
+                <div class="card shadow border-0 bg-warning bg-gradient">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Total Bookings</h5>
-                        <p class="card-text fs-1 text-center">8</p>
+                        <h5 class="card-title text-center text-light">Total Bookings</h5>
+                        <p class="card-text fs-1 text-center text-light">12</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-4">
-                <div class="card shadow border-0" style="width: 18rem;">
+            <div class="col-md-3 mt-4">
+                <div class="card shadow border-0 bg-success bg-gradient">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Available Cars</h5>
-                        <p class="card-text fs-1 text-center">8</p>
+                        <h5 class="card-title text-center text-light">Available Cars</h5>
+                        <p class="card-text fs-1 text-center text-light">6</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-4">
-                <div class="card shadow border-0" style="width: 18rem;">
+            <div class="col-md-3 mt-4">
+                <div class="card shadow border-0 bg-danger bg-gradient">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Reserved Cars</h5>
-                        <p class="card-text fs-1 text-center">8</p>
+                        <h5 class="card-title text-center text-light">Reserved Cars</h5>
+                        <p class="card-text fs-1 text-center text-light">8</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-4">
-                <div class="card shadow border-0" style="width: 18rem;">
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-md-4">
+                <div class="card border-0 shadow bg-danger bg-gradient">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Available Drivers</h5>
-                        <p class="card-text fs-1 text-center">8</p>
+                        <h5 class="card-title text-center text-light">Daily Income Rs.</h5>
+                        <p class="card-text fs-1 text-center text-light">35000</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-4">
-                <div class="card shadow border-0" style="width: 18rem;">
+            <div class="col-md-4">
+                <div class="card shadow border-0 bg-info bg-gradient">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Occupied Drivers</h5>
-                        <p class="card-text fs-1 text-center">8</p>
+                        <h5 class="card-title text-center text-light">Monthly Income Rs.</h5>
+                        <p class="card-text fs-1 text-center text-light">122400</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card shadow border-0 bg-primary bg-gradient">
+                    <div class="card-body">
+                        <h5 class="card-title text-center text-light">Yearly Income Rs.</h5>
+                        <p class="card-text fs-1 text-center text-light">1100000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container table-responsive mt-4">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Customer ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Contact No.</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">NIC No</th>
+                    <th scope="col">License No</th>
+                </tr>
+                </thead>
+                <tbody id="tblCus"></tbody>
+            </table>
         </div>
     </section>
 </main>

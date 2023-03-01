@@ -44,10 +44,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="inputCus" class="form-label">Customer ID</label>
-                        <select id="inputCus" class="form-select" name="rentalCId">
-                            <option selected>C001</option>
-                            <option>C002</option>
-                        </select>
+                        <select id="inputCus" class="form-select" name="customerId"></select>
                     </div>
                     <div class="col-md-2">
                         <label for="inputRentalDate" class="form-label">Rental Date</label>
@@ -63,11 +60,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="inputVehicleNo" class="form-label">Vehicle Number</label>
-                        <select id="inputVehicleNo" class="form-select" name="vehicleNo">
-                            <option selected>AAA-2019</option>
-                            <option>ABS-8571</option>
-                            <option>BAC-5678</option>
-                        </select>
+                        <select id="inputVehicleNo" class="form-select" name="carRegNo"></select>
                     </div>
                     <div class="col-md-2">
                         <label for="inputLdw" class="form-label">Loss Damage Amount Rs.</label>
@@ -135,12 +128,52 @@
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
 <script>
+
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
+
     setDates();
+    getAllCusIds();
+    getAllCarIds();
 
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
         $("#inputRentalDate").val(date);
     }
+
+    function getAllCusIds() {
+        $("#inputCus").empty();
+
+        $.ajax({
+            url: baseUrl + "customer",
+            success: function (res) {
+                for (let c of res.data) {
+                    $("#inputCus").append(`<option value="${c.customerId}">${c.customerId}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    function getAllCarIds() {
+        $("#inputVehicleNo").empty();
+
+        $.ajax({
+            url: baseUrl + "car",
+            success: function (res) {
+                for (let v of res.data) {
+                    $("#inputVehicleNo").append(`<option value="${v.carRegNo}">${v.carRegNo}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

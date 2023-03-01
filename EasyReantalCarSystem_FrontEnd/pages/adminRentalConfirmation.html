@@ -2,9 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Rental Confirmation</title>
+    <meta content="width=device-width initial-scale=1" name="viewport">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">ECRS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="../pages/adminDashBoard.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/adminCarManage.html">Cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Bookings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/adminDriverManage.html">Driver</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/adminScheduleManage.html">Driver Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/adminCustomerDetails.html">Customer Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/payment.html">Payment</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <a href="../index.html"><button class="btn btn-outline-light">Log Out</button></a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+<main>
+    <section class="container mt-4">
+        <div class="card shadow border-0" style="width: 25rem">
+            <div class="card-header bg-primary-subtle fw-medium">
+                Accept or Deny Booking
+            </div>
+            <div class="card-body">
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <label for="selectCusId" class="form-label">Rental ID</label>
+                        <select id="selectCusId" class="form-select" name="availability"></select>
+                    </div>
+                    <div class="col-md-3 mt-5">
+                        <button class="btn btn-success" id="btnAcceptRental" type="button">
+                            Accept
+                        </button>
+                    </div>
+                    <div class="col-md-3 mt-5">
+                        <button class="btn btn-danger" id="btnDenyRental" type="button">
+                            Deny
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
+    <div class="container table-responsive mt-4">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Rental ID</th>
+                <th scope="col">Customer ID</th>
+                <th scope="col">Vehicle No</th>
+                <th scope="col">Driver Id</th>
+                <th scope="col">Pick Up Date</th>
+                <th scope="col">Return Date</th>
+                <th scope="col">Rental Status</th>
+            </tr>
+            </thead>
+            <tbody id="tblConfirm"></tbody>
+        </table>
+    </div>
+</main>
+<script src="../assets/js/jquery-3.6.1.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
 </body>
 </html>
