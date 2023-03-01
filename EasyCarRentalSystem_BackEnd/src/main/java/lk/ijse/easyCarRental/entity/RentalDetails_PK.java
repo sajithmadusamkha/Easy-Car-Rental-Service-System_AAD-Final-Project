@@ -12,8 +12,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 @Data
+@Embeddable
 public class RentalDetails_PK implements Serializable {
     private String rentalId;
-    private String driverId;
     private String carNo;
 }

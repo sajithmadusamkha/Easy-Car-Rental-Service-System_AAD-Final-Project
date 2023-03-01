@@ -19,19 +19,13 @@ import java.util.List;
 public class Rental {
     @Id
     private String rentalId;
-
-    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "customerId", referencedColumnName = "customerId", nullable = false)
-    private Customer cusId;
+    @ManyToOne
+    private Customer customerId;
     private LocalDate date;
-
-    @OneToMany(mappedBy = "rentalId")
-    @JsonIgnore
-    private List<RentalDetails> rentalDetails;
-
-    public Rental(String rentalId, Customer cusId, LocalDate date) {
-        this.rentalId = rentalId;
-        this.cusId = cusId;
-        this.date = date;
-    }
+    private LocalDate pickupDate;
+    private LocalDate returnDate;
+    private double amount;
+    private double ldwPayment;
+    private String pickUpLocation;
+    private String driverStatus;
 }
