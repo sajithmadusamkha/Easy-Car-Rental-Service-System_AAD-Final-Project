@@ -21,4 +21,5 @@ public class RentalDTO {
     private double ldwPayment;
     private String pickUpLocation;
     private String driverStatus;
+    private String carRegNo;
 }

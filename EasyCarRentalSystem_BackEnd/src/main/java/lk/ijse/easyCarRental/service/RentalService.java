@@ -5,7 +5,7 @@ import lk.ijse.easyCarRental.dto.RentalDTO;
 import java.util.List;
 
 public interface RentalService {
-    public void saveRental(RentalDTO rental);
+    public void saveRental(RentalDTO rentalDTO);
 
     public void deleteRental(String rentalId);
 

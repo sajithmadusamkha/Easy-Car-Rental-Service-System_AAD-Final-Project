@@ -28,4 +28,5 @@ public class Rental {
     private double ldwPayment;
     private String pickUpLocation;
     private String driverStatus;
+    private String carRegNo;
 }

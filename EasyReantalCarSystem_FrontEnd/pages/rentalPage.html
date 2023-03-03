@@ -32,7 +32,7 @@
 </header>
 <main>
     <section class="container mt-4">
-        <div class="card">
+        <div class="card border-0 shadow">
             <div class="card-header bg-primary-subtle fw-medium">
                 Enter Your Rental Details
             </div>
@@ -77,8 +77,7 @@
                     <div class="col-md-1">
                         <label for="inputDStatus" class="form-label">Driver Status</label>
                         <select id="inputDStatus" class="form-select" name="driverStatus">
-                            <option selected>Yes</option>
-                            <option>No</option>
+                            <option selected>No</option>
                         </select>
                     </div>
                     <div class="col-md-2">
@@ -90,7 +89,7 @@
                         <input type="date" class="form-control" id="inputReturnDate" name="returnDate">
                     </div>
                     <div class="col-md-2">
-                        <label for="inputAmount" class="form-label">Amount Rs.</label>
+                        <label for="inputAmount" class="form-label">Rental Fee Rs.</label>
                         <input type="text" class="form-control" id="inputAmount" name="amount">
                     </div>
                     <div class="col-md-2">
@@ -108,6 +107,11 @@
                 </form>
             </div>
         </div>
+<!--        <div class="input-group input-group-lg mt-4" style="width: 30rem;">
+            <span class="input-group-text bg-danger-subtle">Total Amount</span>
+            <span class="input-group-text">Rs.</span>
+            <input type="text" class="form-control" disabled>
+        </div>-->
     </section>
     <div class="container table-responsive mt-4">
         <table class="table">
@@ -118,10 +122,10 @@
                 <th scope="col">Driver Status</th>
                 <th scope="col">Pickup Date</th>
                 <th scope="col">Return Date</th>
-                <th scope="col">Total Amount</th>
+                <th scope="col">Rental Fee</th>
             </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="rentalTable"></tbody>
         </table>
     </div>
 </main>
@@ -134,6 +138,7 @@
     setDates();
     getAllCusIds();
     getAllCarIds();
+    getAllDriverIds();
 
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
@@ -173,6 +178,74 @@
             }
         });
     }
+
+    function getAllDriverIds() {
+        //$("#inputDStatus").empty();
+
+        $.ajax({
+           url: baseUrl + "driver",
+            success: function (res) {
+                for (let d of res.data) {
+                    $("#inputDStatus").append(`<option value="${d.driverId}">${d.driverId}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    $("#btnAddToTable").click(function () {
+        let vNumber = $("#inputVehicleNo").val();
+        let ldw = $("#inputLdw").val();
+        let driver = $("#inputDStatus").val();
+        let pickDate = $("#inputPickDate").val();
+        let returnDate = $("#inputReturnDate").val();
+        let fee = $("#inputAmount").val();
+
+        $("#rentalTable").append(`<tr><td>${vNumber}</td><td>${ldw}</td><td>${driver}</td><td>${pickDate}</td><td>${returnDate}</td><td>${fee}</td></tr>`);
+    });
+
+    $("#btnPlaceRental").click(function () {
+        let id = $("#inputRentalId").val();
+        let cusId = $("#inputCus").val();
+        let rentalDate = $("#inputRentalDate").val();
+        let pLocation = $("#inputLocation").val();
+        let carNo = $("#inputVehicleNo").val();
+        let ldw = $("#inputLdw").val();
+        let driver = $("#inputDStatus").val();
+        let pickDate = $("#inputPickDate").val();
+        let rDate = $("#inputReturnDate").val();
+        let fee = $("#inputAmount").val();
+
+        let rental = {
+            rentalId: id,
+            customerId: cusId,
+            date: rentalDate,
+            pickupDate: pickDate,
+            returnDate: rDate,
+            amount: fee,
+            ldwPayment: ldw,
+            pickUpLocation: pLocation,
+            driverStatus: driver,
+            carRegNo: carNo
+        }
+
+        $.ajax({
+            url: baseUrl + "rent",
+            method:"post",
+            dataType: "json",
+            data:JSON.stringify(rental),
+            contentType:"application/json",
+            success: function (resp) {
+                alert(resp.message);
+            },
+            error:function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
 
 </script>
 </body>
