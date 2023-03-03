@@ -15,4 +15,6 @@ public interface CustomerService {
     List<CustomerDTO> getAllCustomer();
 
     public CustomerDTO getCustomerForLogin(UserDTO userDTO);
+
+    String getLastCustomerId();
 }

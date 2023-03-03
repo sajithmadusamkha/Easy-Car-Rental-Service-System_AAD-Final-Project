@@ -66,4 +66,9 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return null;
     }
+
+    @Override
+    public String getLastCustomerId() {
+        return repo.getLastCustomerId();
+    }
 }

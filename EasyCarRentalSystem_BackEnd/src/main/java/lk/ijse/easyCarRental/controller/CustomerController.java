@@ -67,4 +67,11 @@ public class CustomerController {
         List<CustomerDTO> allCustomers = customerService.getAllCustomer();
         return new ResponseUtil("200"," Success.!",allCustomers);
     }
+
+
+    @GetMapping(path = "lastId/CusId")
+    public ResponseUtil getLastCustomerId() {
+        String id = customerService.getLastCustomerId();
+        return new ResponseUtil("200"," Success.!",id);
+    }
 }
