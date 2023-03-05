@@ -29,4 +29,7 @@ public class Rental {
     private String pickUpLocation;
     private String driverStatus;
     private String carRegNo;
+
+    @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
+    private List<RentalDetails> rentalDetails;
 }

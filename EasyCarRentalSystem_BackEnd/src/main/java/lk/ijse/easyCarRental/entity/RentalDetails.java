@@ -20,6 +20,8 @@ public class RentalDetails {
     private RentalDetails_PK id;
     @ManyToOne
     private Driver driverId;
-    private String rentalStatus;
     private String bankSlip;
+
+    @ManyToOne
+    private Rental rental;
 }

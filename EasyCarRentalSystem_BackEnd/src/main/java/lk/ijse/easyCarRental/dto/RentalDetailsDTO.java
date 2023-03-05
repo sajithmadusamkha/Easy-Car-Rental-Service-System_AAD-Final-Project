@@ -12,7 +12,6 @@ import lombok.ToString;
 @ToString
 public class RentalDetailsDTO {
     private String id;
-    private Driver driverId;
-    private String rentalStatus;
+    private String driverId;
     private String bankSlip;
 }

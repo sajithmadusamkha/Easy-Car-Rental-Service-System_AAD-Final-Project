@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-md-1">
                         <label for="inputDStatus" class="form-label">Driver Status</label>
-                        <select id="inputDStatus" class="form-select" name="driverStatus">
+                        <select id="inputDStatus" class="form-select" name="driverId">
                             <option selected>No</option>
                         </select>
                     </div>
@@ -123,6 +123,7 @@
                 <th scope="col">Pickup Date</th>
                 <th scope="col">Return Date</th>
                 <th scope="col">Rental Fee</th>
+                <th scope="col">Bank Slip</th>
             </tr>
             </thead>
             <tbody id="rentalTable"></tbody>
@@ -203,8 +204,10 @@
         let pickDate = $("#inputPickDate").val();
         let returnDate = $("#inputReturnDate").val();
         let fee = $("#inputAmount").val();
+        let bankSlip = $("#bankSlip")[0].files[0].name;
 
-        $("#rentalTable").append(`<tr><td>${vNumber}</td><td>${ldw}</td><td>${driver}</td><td>${pickDate}</td><td>${returnDate}</td><td>${fee}</td></tr>`);
+        $("#rentalTable").append(`<tr><td>${vNumber}</td><td>${ldw}</td><td>${driver}</td><td>${pickDate}
+        </td><td>${returnDate}</td><td>${fee}</td><td>${bankSlip}</td></tr>`);
     });
 
     $("#btnPlaceRental").click(function () {
@@ -246,6 +249,18 @@
             }
         });
     });
+
+    function getRentalDetails(rId) {
+        let rows = $("#rentalTable").children().length;
+        var array = [];
+
+        for (let i = 0; i < rows; i++) {
+            let dId = $("#rentalTable").children().eq(i).children(":eq(2)").text();
+            let bSlip= $("#rentalTable").children().eq(i).children(":eq(6)").text();
+            array.push({rentalId:rId,driverId: dId, bankSlip: bSlip});
+        }
+        return array;
+    }
 
 </script>
 </body>

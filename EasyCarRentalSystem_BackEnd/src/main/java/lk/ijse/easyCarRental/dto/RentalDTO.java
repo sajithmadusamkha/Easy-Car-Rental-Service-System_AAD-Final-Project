@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +23,6 @@ public class RentalDTO {
     private String pickUpLocation;
     private String driverStatus;
     private String carRegNo;
+
+    private ArrayList<RentalDetailsDTO> rentalDetails;
 }
