@@ -120,7 +120,7 @@
                         <label for="status" class="form-label">Status</label>
                         <select id="status" class="form-select">
                             <option selected>Paid</option>
-                            <option selected>Unpaid</option>
+                            <option>Unpaid</option>
                         </select>
                     </div>
                     <div class="col-auto">
@@ -133,5 +133,38 @@
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
+<script>
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
+
+
+    $("#btnPay").click(function () {
+
+    });
+
+    function searchRental(rentalId){
+        let response = "";
+        $.ajax({
+            url: baseUrl + "rent",
+            dataType: "json",
+            async: false,
+            success: function (resp){
+                response = resp.data.filter((p) => {
+                   return  p.rentalId == rentalId;
+                });
+            }
+        });
+        return response;
+    }
+
+    $("#inputRentalId").change(function () {
+        let rentalId = $("#inputRentalId").val();
+        let res = searchRental(rentalId);
+        if (res.length > 0) {
+            $("#customerId").val(res[0].cuctomerId);
+            $("#pickupDate").val(res[0].pickupDate);
+            $("#returnDate").val(res[0].returnDate);
+        }
+    });
+</script>
 </body>
 </html>
