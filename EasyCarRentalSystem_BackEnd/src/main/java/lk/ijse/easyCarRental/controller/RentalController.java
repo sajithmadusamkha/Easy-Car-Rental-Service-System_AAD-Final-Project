@@ -1,10 +1,13 @@
 package lk.ijse.easyCarRental.controller;
 
+import lk.ijse.easyCarRental.dto.DriverDTO;
 import lk.ijse.easyCarRental.dto.RentalDTO;
 import lk.ijse.easyCarRental.service.RentalService;
 import lk.ijse.easyCarRental.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/rent")
@@ -24,5 +27,11 @@ public class RentalController {
     public ResponseUtil deleteRental(String rentalId){
         service.deleteRental(rentalId);
         return new ResponseUtil("200",rentalId+" : Deleted.!",null);
+    }
+
+    @GetMapping
+    public ResponseUtil getAllRental(){
+        List<RentalDTO> allRentals = service.getAllRentals();
+        return new ResponseUtil("200"," Success.!",allRentals);
     }
 }

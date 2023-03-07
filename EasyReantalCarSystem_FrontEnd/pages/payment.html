@@ -54,7 +54,7 @@
                     <div class="col-md-3">
                         <label for="inputRentalId" class="form-label">Rental ID</label>
                         <select id="inputRentalId" class="form-select">
-                            <option selected>R-001</option>
+                            <option></option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -136,6 +136,9 @@
 <script>
     let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
 
+    loadAllRentalIds();
+    setDates();
+
 
     $("#btnPay").click(function () {
 
@@ -160,11 +163,37 @@
         let rentalId = $("#inputRentalId").val();
         let res = searchRental(rentalId);
         if (res.length > 0) {
-            $("#customerId").val(res[0].cuctomerId);
+            $("#customerId").val(res[0].customerId);
             $("#pickupDate").val(res[0].pickupDate);
             $("#returnDate").val(res[0].returnDate);
+            let carNo = res[0].carRegNo;
+            let driverId = res[0].driverStatus;
+            let amount = res[0].amount;
+            $("#tblDetails").append(`<tr><td>${carNo}</td><td>${driverId}</td><td>${amount}</td></tr>`)
         }
     });
+
+    function loadAllRentalIds() {
+        $("#inputRentalId").empty();
+
+        $.ajax({
+            url: baseUrl + "rent",
+            success: function (res) {
+                for (let r of res.data) {
+                    $("#inputRentalId").append(`<option value="${r.rentalId}">${r.rentalId}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    function setDates() {
+        let date = new Date().toJSON().split("T")[0];
+        $("#date").val(date);
+    }
 </script>
 </body>
 </html>
