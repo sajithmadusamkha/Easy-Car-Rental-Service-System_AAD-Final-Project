@@ -141,7 +141,43 @@
 
 
     $("#btnPay").click(function () {
+        let id = $("#paymentId").val();
+        let paymentDate = $("#date").val();
+        let fullAmount = $("#amount").val();
+        let dmgCost = $("#damageCost").val();
+        let dmgDesc = $("#description").val();
+        let extMileage = $("#extra").val();
+        let costPerKm = $("#costPerKm").val();
+        let status = $("#status").val();
+        let rId = $("#inputRentalId").val();
 
+        let payment = {
+            paymentId: id,
+            date: paymentDate,
+            amount: fullAmount,
+            damageCost:dmgCost,
+            damageDescription: dmgDesc,
+            extraMileage: extMileage,
+            costPerExtraKm: costPerKm,
+            paymentStratus: status,
+            rentalId:rId
+        }
+
+        $.ajax({
+            url: baseUrl + "payment",
+            method:"post",
+            dataType: "json",
+            data:JSON.stringify(payment),
+            contentType:"application/json",
+            success: function (resp) {
+                alert(resp.message);
+                clearTextFields("","","","","","","","","","")
+                $("#tblDetails").empty();
+            },
+            error:function (error){
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
     });
 
     function searchRental(rentalId){
@@ -193,6 +229,19 @@
     function setDates() {
         let date = new Date().toJSON().split("T")[0];
         $("#date").val(date);
+    }
+
+    function clearTextFields(rId,cuId,pDate,rDate,payId,date,dmgCost,desc,extra,amount){
+        $("#inputRentalId").val(rId);
+        $("#customerId").val(cuId);
+        $("#pickupDate").val(pDate);
+        $("#returnDate").val(rDate);
+        $("#paymentId").val(payId);
+        $("#date").val(date);
+        $("#damageCost").val(dmgCost);
+        $("#description").val(desc);
+        $("#extra").val(extra);
+        $("#amount").val(amount);
     }
 </script>
 </body>
