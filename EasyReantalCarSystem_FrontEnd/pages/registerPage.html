@@ -189,6 +189,10 @@
     const cusEmailRegEx=/^[a-z0-9]{3,}[@]?[a-z]{1,}[.]?[a-z]{2,}$/;
     const cusPasswordRegEx=/^[A-z0-9]{6,}$/;
 
+    $('#inputCusId,#inputCusName,#inputCusEmail,#inputPassword,#cusTelNo,#cusAddress,#cusNicNo,#cusLicenseNo').on('blur', function () {
+        customerValidation();
+    });
+
     function customerValidation() {
         var id = $("#inputCusId").val();
         $("#inputCusId").css('border', '2px solid green');
