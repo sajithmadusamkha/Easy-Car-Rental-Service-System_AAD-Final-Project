@@ -54,17 +54,12 @@
             <div class="card-body">
                 <form class="row g-3">
                     <div class="col-md-6">
-                        <label for="selectCusId" class="form-label">Rental ID</label>
-                        <select id="selectCusId" class="form-select" name="availability"></select>
+                        <label for="selectRentalId" class="form-label">Rental ID</label>
+                        <select id="selectRentalId" class="form-select" name="availability"></select>
                     </div>
-                    <div class="col-md-3 mt-5">
-                        <button class="btn btn-success" id="btnAcceptRental" type="button">
-                            Accept
-                        </button>
-                    </div>
-                    <div class="col-md-3 mt-5">
+                    <div class="col-md-4 mt-5">
                         <button class="btn btn-danger" id="btnDenyRental" type="button">
-                            Deny
+                            Deny Rental
                         </button>
                     </div>
                 </form>
@@ -79,10 +74,9 @@
                 <th scope="col">Rental ID</th>
                 <th scope="col">Customer ID</th>
                 <th scope="col">Vehicle No</th>
-                <th scope="col">Driver Id</th>
+                <th scope="col">Driver Status</th>
                 <th scope="col">Pick Up Date</th>
                 <th scope="col">Return Date</th>
-                <th scope="col">Rental Status</th>
             </tr>
             </thead>
             <tbody id="tblConfirm"></tbody>
@@ -91,5 +85,62 @@
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
+<script>
+    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
+
+    getAllRentalIds();
+    getAllRentals();
+
+
+    $("#btnDenyRental").click(function () {
+        let rentalId = $("#selectRentalId").val();
+        $.ajax({
+            url: baseUrl + "rent?rentalId=" + rentalId + "",
+            method: "delete",
+            dataType: "json",
+            success: function (res) {
+                alert(res.message)
+                getAllRentals();
+                getAllRentalIds();
+            },
+            error: function (err) {
+                let cause= JSON.parse(err.responseText).message;
+                alert(cause);
+            }
+        });
+    });
+
+    function getAllRentalIds() {
+        $("#selectRentalId").empty();
+
+        $.ajax({
+            url: baseUrl + "rent",
+            success: function (res) {
+                for (let r of res.data) {
+                    $("#selectRentalId").append(`<option value="${r.rentalId}">${r.rentalId}</option>`);
+                }
+            },
+            error: function (error) {
+                let message = JSON.parse(error.responseText).message;
+                alert(message);
+            }
+        });
+    }
+
+    function getAllRentals() {
+        $("#tblConfirm").empty();
+        $.ajax({
+            url: baseUrl + "rent",
+            dataType: "json",
+            success: function (res) {
+                for (let r of res.data){
+                    var row = '<tr><td>' + r.rentalId + '</td><td>' + r.customerId + '</td><td>' + r.carRegNo + '</td><td>'
+                        + r.driverStatus + '</td><td>' + r.pickupDate + '</td><td>' + r.returnDate +'</td></tr>'
+                    $("#tblConfirm").append(row);
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
