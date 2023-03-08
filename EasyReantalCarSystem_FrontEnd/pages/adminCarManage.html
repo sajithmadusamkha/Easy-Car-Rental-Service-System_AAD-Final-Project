@@ -179,7 +179,7 @@
                 <th scope="col">Free Km For Day</th>
                 <th scope="col">Free Km For Month</th>
                 <th scope="col">Price Per Extra Km</th>
-                <th scope="col">Status</th>
+                <th scope="col">Availability</th>
             </tr>
             </thead>
             <tbody id="tblCars"></tbody>
@@ -277,7 +277,7 @@
                         + c.noOfPassenger + '</td><td>' + c.transmissionType + '</td><td>' + c.fuelType + '</td><td>'
                         + c.color + '</td><td>' + c.dailyRate + '</td><td>' + c.monthlyRate + '</td><td>'
                         + c.freeKmForDaily + '</td><td>' + c.freeKmForMonth + '</td><td>' + c.pricePerExtraKm
-                        + '</td><td>' + c.status +'</td></tr>'
+                        + '</td><td>' + c.availability +'</td></tr>'
                     $("#tblCars").append(row);
                 }
                 bindRowClickEvent();
