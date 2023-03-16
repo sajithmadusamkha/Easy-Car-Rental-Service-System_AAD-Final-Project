@@ -17,10 +17,10 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" id="btn-admin-home" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../pages/adminCarManage.html">Cars</a>
+                            <a class="nav-link" id="btn-car-manage" href="#">Cars</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../pages/adminRentalConfirmation.html">Bookings</a>
@@ -46,7 +46,7 @@
         </nav>
     </header>
 <main>
-    <section class="container mt-4">
+    <section class="container mt-4" id="admin-dashboard">
         <div class="row g-3">
             <div class="col-md-3 mt-4">
                 <div class="card border-0 shadow bg-primary bg-gradient">
@@ -127,29 +127,158 @@
             </table>
         </div>
     </section>
+
+    <!---------------------------------------- Admin Car Manage Content Start ---------------------------------------->
+
+    <section class="container-fluid mt-4" id="car-manage" style="display: none">
+        <div class="card shadow border-0">
+            <div class="card-header bg-primary-subtle fw-medium">
+                Manage Car
+            </div>
+            <div class="card-body">
+                <form class="row g-3">
+                    <div class="col-md-2">
+                        <label for="inputCarNo" class="form-label">Car No</label>
+                        <input type="text" class="form-control" id="inputCarNo" name="carRegNo">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputBrand" class="form-label">Brand</label>
+                        <select id="inputBrand" class="form-select" name="brand">
+                            <option selected>Select Vehicle Brand</option>
+                            <option>Suzuki Alto</option>
+                            <option>Suzuki Alto K10</option>
+                            <option>Suzuki Celerio</option>
+                            <option>Perodua (Daihatsu) Axia</option>
+                            <option>Toyota Prius C/ Aqua</option>
+                            <option>Toyota Corolla Axio</option>
+                            <option>Perodua Bezza Prime Sedan</option>
+                            <option>Toyota Allion NZT 260</option>
+                            <option>Toyota Premio</option>
+                            <option>Mercedes</option>
+                            <option>BMW i8</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputType" class="form-label">Type</label>
+                        <select id="inputType" class="form-select" name="type">
+                            <option selected>Select Type</option>
+                            <option>General</option>
+                            <option>Premium</option>
+                            <option>Luxury</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNoPass" class="form-label">No Of Passenger</label>
+                        <input type="number" class="form-control" id="inputNoPass" name="noOfPassenger" min="2" max="20" placeholder="">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputTransmission" class="form-label">Transmission Type</label>
+                        <select id="inputTransmission" class="form-select" name="transmissionType">
+                            <option selected>Auto</option>
+                            <option>Manual</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputFuelType" class="form-label">Fuel Type</label>
+                        <select id="inputFuelType" class="form-select" name="fuelType">
+                            <option selected>Petrol</option>
+                            <option>Diesel</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputColor" class="form-label">Color</label>
+                        <input type="text" class="form-control" id="inputColor" name="color">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputDailyRate" class="form-label">Daily Rate Rs.</label>
+                        <input type="text" class="form-control" id="inputDailyRate" name="dailyRate">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputMonthlyRate" class="form-label">Monthly Rate Rs.</label>
+                        <input type="text" class="form-control" id="inputMonthlyRate" name="monthlyRate">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputFreeKmForDay" class="form-label">Free Km For a Day</label>
+                        <input type="text" class="form-control" id="inputFreeKmForDay" name="freeKmForDaily">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputFreeKmForMonth" class="form-label">Free Km For a Month</label>
+                        <input type="text" class="form-control" id="inputFreeKmForMonth" name="freeKmForMonth">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputPricePerExtraKm" class="form-label">Price Per Extra Km</label>
+                        <input type="text" class="form-control" id="inputPricePerExtraKm" name="pricePerExtraKm">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="inputAvailability" class="form-label">Availability</label>
+                        <select id="inputAvailability" class="form-select" name="availability">
+                            <option selected>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="frontImg" class="form-label">Front Image</label>
+                        <input class="form-control disabled" type="file" id="frontImg" name="fontImage">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="backImg" class="form-label">Back Image</label>
+                        <input class="form-control disabled" type="file" id="backImg" name="backImage">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="sideImg" class="form-label">Side Image</label>
+                        <input class="form-control disabled" type="file" id="sideImg" name="sideImage">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="interiorImg" class="form-label">Interior Image</label>
+                        <input class="form-control disabled" type="file" id="interiorImg" name="interiorImage">
+                    </div>
+                </form>
+                <div class="btn-group text-right col-md-4 mt-3">
+                    <button class="btn btn-success col-12 col-sm-auto" id="btnAddCar" type="button">
+                        Add
+                    </button>
+                    <button class="btn btn-warning col-12 col-sm-auto" id="btnCarUpdate" type="button">
+                        Update
+                    </button>
+                    <button class="btn btn-danger col-12 col-sm-auto" id="btnCarDelete" type="button">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <div class="container-fluid table-responsive mt-4">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Car No</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Type</th>
+                <th scope="col">No of Passenger</th>
+                <th scope="col">Transmission Type</th>
+                <th scope="col">Fuel Type</th>
+                <th scope="col">Colour</th>
+                <th scope="col">Daily Rate Rs.</th>
+                <th scope="col">Monthly Rate Rs.</th>
+                <th scope="col">Free Km For Day</th>
+                <th scope="col">Free Km For Month</th>
+                <th scope="col">Price Per Extra Km</th>
+                <th scope="col">Availability</th>
+            </tr>
+            </thead>
+            <tbody id="tblCars"></tbody>
+        </table>
+    </div>
+</section>
+
+    <!---------------------------------------- Admin Car Manage Content End ---------------------------------------->
+
+
 </main>
 <script src="../assets/js/jquery-3.6.1.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script>
-    let baseUrl = "http://localhost:8080/EasyCarRentalSystem_BackEnd_war_exploded/api/v1/";
-
-    loadAllCustomers();
-
-    function loadAllCustomers() {
-        $("#tblCus").empty();
-        $.ajax({
-            url: baseUrl + "customer",
-            dataType: "json",
-            success: function (res) {
-                for (let cus of res.data) {
-                    var row = '<tr><td>' + cus.customerId + '</td><td>' + cus.name + '</td><td>' + cus.email +
-                        '</td><td>' + cus.password + '</td><td>' + cus.contactNo + '</td><td>' + cus.address +
-                        '</td><td>' + cus.nicNo + '</td><td>' + cus.drivingLicenseNo + '</td></tr>'
-                    $("#tblCus").append(row)
-                }
-            }
-        });
-    }
-</script>
+<script src="../controllers/AdminPageController.js"></script>
+<script src="../controllers/CarController.js"></script>
+<script src="../controllers/DashBoardController.js"></script>
 </body>
 </html>
